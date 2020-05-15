@@ -1,0 +1,16 @@
+matrix:
+  include:
+    - &macos
+      os: osx
+      osx_image: xcode11.2
+      addons:
+        homebrew:
+          packages:
+            - c-ares
+      name: bad
+      script:
+        - make bad
+    - <<: *macos
+      name: good
+      script:
+        - make good
