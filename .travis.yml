@@ -1,13 +1,15 @@
 os: osx
 osx_image: xcode11.2
-addons:
-  homebrew:
-    packages:
-      - c-ares
 
 jobs:
   include:
     - &before
+      addons:
+        homebrew:
+          packages:
+            - c-ares
+      env:
+        - version: 1.16.0
       name: 1.16.0
       script: make bad
     - <<: *before
@@ -17,6 +19,10 @@ jobs:
       addons:
         homebrew:
           update: true
+          packages:
+            - c-ares
+      env:
+        - version: 1.16.1
       name: 1.16.1
       script: make bad
     - <<: *after
