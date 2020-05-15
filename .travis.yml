@@ -7,18 +7,18 @@ addons:
 
 jobs:
   include:
-    - &"1.16.0"
+    - &before
       name: 1.16.0
       script: make bad
-    - <<: *"1.16.0"
+    - <<: *before
       name: 1.16.0 -lresolv
       script: make good
-    - &"1.16.1"
+    - &after
       addons:
         homebrew:
           update: true
       name: 1.16.1
       script: make bad
-    - <<: *"1.16.1"
+    - <<: *after
       name: 1.16.1 -lresolv
       script: make good
