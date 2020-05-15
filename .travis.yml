@@ -1,17 +1,24 @@
-matrix:
+os: osx
+osx_image: xcode11.2
+addons:
+  homebrew:
+    packages:
+      - c-ares
+
+jobs:
   include:
-    - &macos
-      os: osx
-      osx_image: xcode11.2
+    - &1.16.0
+      name: 1.16.0
+      script: make bad
+    - <<: *1.16.0
+      name: 1.16.0 -lresolv
+      script: make good
+    - &1.16.1
       addons:
         homebrew:
           update: true
-          packages:
-            - c-ares
-      name: bad
-      script:
-        - make bad
-    - <<: *macos
-      name: good
-      script:
-        - make good
+      name: 1.16.1
+      script: make bad
+    - <<: *1.16.1
+      name: 1.16.1 -lresolv
+      script: make good
