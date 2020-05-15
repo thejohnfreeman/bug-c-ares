@@ -5,6 +5,7 @@ matrix:
       osx_image: xcode11.2
       addons:
         homebrew:
+          update: true
           packages:
             - c-ares
       name: bad
